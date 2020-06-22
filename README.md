@@ -1,1 +1,3 @@
 - composer install
+- php artisan migrate:fresh
+- php artisan passport:install --force

@@ -21,7 +21,12 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();
+            $table->softDeletes();
         });
+
+        DB::table('users')->insert([
+            ['name' => 'admin', 'email' => 'admin@mail.com', 'password' => Hash::make('admin'), 'created_at' => NOW()],
+        ]);
     }
 
     /**

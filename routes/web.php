@@ -10,7 +10,12 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Route::get('/', function () {
-    return view('welcome');
+Route::group(['namespace' => 'Customer'], function(){
+    Route::get('/', 'ProductController@index')->name('product.index');
+    Route::get('/product/{product}', 'ProductController@show')->name('product.show');
+    Route::post('/product', 'ProductController@order')->name('product.order');
 });
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
