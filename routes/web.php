@@ -19,3 +19,11 @@ Route::group(['namespace' => 'Customer'], function(){
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::group(['middleware' => 'auth', 'namespace' => 'Admin', 'prefix' => 'admin'], function(){
+    Route::get('/product', 'ProductController@index')->name('product-admin.index');
+    Route::get('/product/add', 'ProductController@add')->name('product-admin.add');
+    Route::get('/product/{product}', 'ProductController@show')->name('product-admin.show');
+    Route::post('/product', 'ProductController@store')->name('product-admin.store');
+    Route::patch('/product/{product}', 'ProductController@update')->name('product-admin.update');
+    Route::delete('/product/{product}', 'ProductController@destroy')->name('product-admin.destroy');
+});

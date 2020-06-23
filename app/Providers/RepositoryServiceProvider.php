@@ -4,6 +4,8 @@ namespace App\Providers;
 
 use App\Repositories\ClientRepository;
 use App\Repositories\Interfaces\ClientInterface;
+use App\Repositories\AdminRepository;
+use App\Repositories\Interfaces\AdminInterface;
 use Illuminate\Support\ServiceProvider;
 
 class RepositoryServiceProvider extends ServiceProvider
@@ -15,6 +17,11 @@ class RepositoryServiceProvider extends ServiceProvider
      */
     public function register()
     {
+        $this->app->bind(
+            AdminInterface::class, 
+            AdminRepository::class
+        );
+
         $this->app->bind(
             ClientInterface::class, 
             ClientRepository::class
