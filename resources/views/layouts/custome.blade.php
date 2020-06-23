@@ -26,7 +26,7 @@
                                 <a class="nav-link" href="{!! route('product-admin.index') !!}">Products</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#">Users</a>
+                                <a class="nav-link" href="{!! route('order-admin.index') !!}">Orders</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="#">Users</a>

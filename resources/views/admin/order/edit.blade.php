@@ -6,19 +6,19 @@
             <h4>Edit Form</h4>
         </div>
         <div class="col-lg-12">
-            <form action="{!! route('product-admin.update', $product->id) !!}" method="POST">
+            <form action="{!! route('order-admin.update', $order->id) !!}" method="POST">
                 @csrf @method('patch')
                 <div class="form-group">
-                    <label for="name">Name</label>
-                    <input value="{{old('name') ?? $product->name}}" name="name" type="text" class="form-control @error('name') is-invalid @enderror" id="name">
-                    @error('name')
+                    <label for="product">product</label>
+                    <input value="{{old('product') ?? $order->product}}" name="product" type="text" class="form-control @error('product') is-invalid @enderror" id="product">
+                    @error('product')
                         <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
                 </div>
                 <div class="form-group">
-                    <label for="price">Price</label>
-                    <input value="{{old('price') ?? $product->price}}" name="price" type="number" class="form-control @error('price') is-invalid @enderror" id="price">
-                    @error('price')
+                    <label for="total_order">Total Order</label>
+                    <input value="{{old('total_order') ?? $order->total_order}}" name="total_order" type="number" class="form-control @error('total_order') is-invalid @enderror" id="total_order">
+                    @error('total_order')
                         <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
                 </div>

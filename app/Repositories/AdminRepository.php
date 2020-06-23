@@ -9,6 +9,7 @@ use App\Repositories\Interfaces\AdminInterface;
 
 class AdminRepository implements AdminInterface
 {
+    // product
     public function productList($paginate)
     {
 
@@ -45,6 +46,32 @@ class AdminRepository implements AdminInterface
         $product = Product::findOrFail($id);
         if ($product->delete()) {
             return $product;
+        }
+    }
+
+
+    // order
+    public function orderShow($id)
+    {
+        $order = Order::findOrFail($id);
+        return $order;
+    }
+
+    public function orderUpdate($request, $id)
+    {
+        $order = Order::findOrFail($id);
+        $order->product = $request->product;
+        $order->total_order = $request->total_order;
+        if ($order->update()) {
+            return $order;
+        }
+    }
+
+    public function orderDelete($id)
+    {
+        $order = Order::findOrFail($id);
+        if ($order->delete()) {
+            return $order;
         }
     }
 }

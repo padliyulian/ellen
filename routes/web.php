@@ -20,10 +20,17 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::group(['middleware' => 'auth', 'namespace' => 'Admin', 'prefix' => 'admin'], function(){
+    // product
     Route::get('/product', 'ProductController@index')->name('product-admin.index');
     Route::get('/product/add', 'ProductController@add')->name('product-admin.add');
     Route::get('/product/{product}', 'ProductController@show')->name('product-admin.show');
     Route::post('/product', 'ProductController@store')->name('product-admin.store');
     Route::patch('/product/{product}', 'ProductController@update')->name('product-admin.update');
     Route::delete('/product/{product}', 'ProductController@destroy')->name('product-admin.destroy');
+
+    // order
+    Route::get('/order', 'OrderController@index')->name('order-admin.index');
+    Route::get('/order/{order}', 'OrderController@show')->name('order-admin.show');
+    Route::patch('/order/{order}', 'OrderController@update')->name('order-admin.update');
+    Route::delete('/order/{order}', 'OrderController@destroy')->name('order-admin.destroy');
 });

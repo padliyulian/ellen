@@ -17,23 +17,15 @@
         </div>    
     @endif
 
-    <div class="row pb-3">
-        <div class="col-12">
-            <a href="{!! route('product-admin.add') !!}" class="btn btn-primary btn-md">
-                Add Product
-            </a>
-        </div>
-    </div>
-
     <div class="row">
         <div class="col-12">
             <div class="table-responsive">
-                <table data-order='[[ 0, "desc" ]]' id="product-table" class="table table-striped">
+                <table data-order='[[ 0, "desc" ]]' id="order-table" class="table table-striped">
                     <thead>
                         <tr>
                             <th>Code</th>
-                            <th>Name</th>
-                            <th>Price</th>
+                            <th>Product</th>
+                            <th>Total Order</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
@@ -49,20 +41,20 @@
     <script type="text/javascript" src="{{ asset('/js/jquery.dataTables.min.js') }}"></script>
     <script type="text/javascript">
         // data table
-        let table = $('#product-table').DataTable({
+        let table = $('#order-table').DataTable({
             responsive: true,
             processing: true,
             serverSide: true,
             ajax: {
-                url: "{!! route('api.product.index') !!}",
+                url: "{!! route('api.order.index') !!}",
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 }
             },
             columns: [
                 {data: 'id', name: 'id'},
-                {data: 'name', name: 'name'},
-                {data: 'price', name: 'price'},
+                {data: 'product', name: 'product'},
+                {data: 'total_order', name: 'total_order'},
                 {data: 'action', name: 'action', orderable: false},
             ],
             columnDefs: [
@@ -73,8 +65,8 @@
             ],
         });
 
-         // delete product
-         $('body').on('click', '.js-product__delete', function (event) {
+         // delete order
+         $('body').on('click', '.js-order__delete', function (event) {
             event.preventDefault();
 
             let me = $(this),
