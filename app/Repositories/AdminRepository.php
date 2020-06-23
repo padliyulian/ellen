@@ -8,13 +8,27 @@ use App\Models\Product;
 use App\Models\User;
 use App\Repositories\Interfaces\AdminInterface;
 use Illuminate\Support\Facades\Hash;
+use Yajra\DataTables\Datatables;
 
 class AdminRepository implements AdminInterface
 {
     // product
-    public function productList($paginate)
+    public function productList()
     {
-
+        $product = Product::query();
+        if ($product) {
+            return DataTables::of($product)
+            ->addColumn('action', function ($product) {
+                return view('admin.product.action', [
+                    'product' => $product,
+                    'url_edit' => route('product-admin.show', $product->id),
+                    'url_destroy' => route('product-admin.destroy', $product->id)
+                ]);
+            })
+            ->addIndexColumn()
+            ->rawColumns(['action'])
+            ->make(true);
+        }
     }
 
     public function productStore($request)
@@ -53,6 +67,24 @@ class AdminRepository implements AdminInterface
 
 
     // order
+    public function orderList()
+    {
+        $order = Order::query();
+        if ($order) {
+            return DataTables::of($order)
+            ->addColumn('action', function ($order) {
+                return view('admin.order.action', [
+                    'order' => $order,
+                    'url_edit' => route('order-admin.show', $order->id),
+                    'url_destroy' => route('order-admin.destroy', $order->id)
+                ]);
+            })
+            ->addIndexColumn()
+            ->rawColumns(['action'])
+            ->make(true);
+        }
+    }
+
     public function orderShow($id)
     {
         $order = Order::findOrFail($id);
@@ -78,6 +110,24 @@ class AdminRepository implements AdminInterface
     }
 
     // user
+    public function userList()
+    {
+        $user = User::query();
+        if ($user) {
+            return DataTables::of($user)
+            ->addColumn('action', function ($user) {
+                return view('admin.user.action', [
+                    'user' => $user,
+                    'url_edit' => route('user-admin.show', $user->id),
+                    'url_destroy' => route('user-admin.destroy', $user->id)
+                ]);
+            })
+            ->addIndexColumn()
+            ->rawColumns(['action'])
+            ->make(true);
+        }
+    }
+
     public function userShow($id)
     {
         $user = User::findOrFail($id);

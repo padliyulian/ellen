@@ -4,25 +4,20 @@ namespace App\Http\Controllers\Admin\Api;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\User;
-use Yajra\DataTables\Datatables;
+use App\Repositories\Interfaces\AdminInterface;
 
 class UserController extends Controller
 {
+    private $model;
+
+    public function __construct(AdminInterface $model)
+    {
+        $this->model = $model;
+    }
+    
     public function index()
     {
-        $user = User::query();
-
-        return DataTables::of($user)
-        ->addColumn('action', function ($user) {
-            return view('admin.user.action', [
-                'user' => $user,
-                'url_edit' => route('user-admin.show', $user->id),
-                'url_destroy' => route('user-admin.destroy', $user->id)
-            ]);
-        })
-        ->addIndexColumn()
-        ->rawColumns(['action'])
-        ->make(true);
+        $users = $this->model->userList();
+        return $users;
     }
 }
