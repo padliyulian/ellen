@@ -5,7 +5,9 @@ namespace App\Repositories;
 use App\Models\Customer;
 use App\Models\Order;
 use App\Models\Product;
+use App\Models\User;
 use App\Repositories\Interfaces\AdminInterface;
+use Illuminate\Support\Facades\Hash;
 
 class AdminRepository implements AdminInterface
 {
@@ -72,6 +74,32 @@ class AdminRepository implements AdminInterface
         $order = Order::findOrFail($id);
         if ($order->delete()) {
             return $order;
+        }
+    }
+
+    // user
+    public function userShow($id)
+    {
+        $user = User::findOrFail($id);
+        return $user;
+    }
+
+    public function userUpdate($request, $id)
+    {
+        $user = User::findOrFail($id);
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->password = Hash::make($request->password);
+        if ($user->update()) {
+            return $user;
+        }
+    }
+
+    public function userDelete($id)
+    {
+        $user = User::findOrFail($id);
+        if ($user->delete()) {
+            return $user;
         }
     }
 }

@@ -33,4 +33,10 @@ Route::group(['middleware' => 'auth', 'namespace' => 'Admin', 'prefix' => 'admin
     Route::get('/order/{order}', 'OrderController@show')->name('order-admin.show');
     Route::patch('/order/{order}', 'OrderController@update')->name('order-admin.update');
     Route::delete('/order/{order}', 'OrderController@destroy')->name('order-admin.destroy');
+
+    // order
+    Route::get('/user', 'UserController@index')->name('user-admin.index');
+    Route::get('/user/{user}', 'UserController@show')->name('user-admin.show');
+    Route::patch('/user/{user}', 'UserController@update')->name('user-admin.update');
+    Route::delete('/user/{user}', 'UserController@destroy')->name('user-admin.destroy');
 });

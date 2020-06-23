@@ -15,4 +15,9 @@ interface AdminInterface
     public function orderShow($id);
     public function orderUpdate($request, $id);
     public function orderDelete($id);
+
+    // user
+    public function userShow($id);
+    public function userUpdate($request, $id);
+    public function userDelete($id);
 }
