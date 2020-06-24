@@ -40219,8 +40219,8 @@ var swal = window.swal = __webpack_require__(/*! sweetalert2 */ "./node_modules/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /home/julian/Public/ellen/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /home/julian/Public/ellen/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /home/julian/code/ellen/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /home/julian/code/ellen/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
