@@ -1,8 +1,6 @@
 @extends('layouts.custome')
 
 @section('content')
-    <meta name="csrf-token" content="{{csrf_token()}}">
-    <link rel="stylesheet" href="http://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css">
 
     @if (@isset($status))
         <div class="row">

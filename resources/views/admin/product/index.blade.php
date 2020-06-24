@@ -1,8 +1,6 @@
 @extends('layouts.custome')
 
 @section('content')
-    <meta name="csrf-token" content="{{csrf_token()}}">
-    <link rel="stylesheet" href="http://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css">
 
     @if (@isset($status))
         <div class="row">
@@ -42,8 +40,6 @@
             </div>
         </div>
     </div>
-
-
 
     <script type="text/javascript" src="{{ asset('/js/jquery-3.3.1.js') }}"></script>
     <script type="text/javascript" src="{{ asset('/js/jquery.dataTables.min.js') }}"></script>
