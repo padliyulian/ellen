@@ -3,17 +3,16 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 use App\Http\Requests\Product as ProductRequest;
-use App\Repositories\Interfaces\AdminInterface;
+use App\Services\ProductService;
 
 class ProductController extends Controller
 {
-    private $model;
+    private $productService;
 
-    public function __construct(AdminInterface $model)
+    public function __construct(ProductService $productService)
     {
-        $this->model = $model;
+        $this->productService = $productService;
     }
 
     public function index()
@@ -28,24 +27,24 @@ class ProductController extends Controller
 
     public function store(ProductRequest $request)
     {
-        $this->model->productStore($request);
+        $this->productService->productStore($request);
         return view('admin.product.index')->withStatus('Add Success');
     }
 
     public function show($product)
     {
-        $product = $this->model->productShow($product);
+        $product = $this->productService->productDetail($product);
         return view('admin.product.edit', compact('product'));
     }
 
     public function update(ProductRequest $request, $product)
     {
-        $this->model->productUpdate($request, $product);
+        $this->productService->productUpdate($request, $product);
         return view('admin.product.index')->withStatus('Update Success');
     }
 
     public function destroy($product)
     {
-        $this->model->productDelete($product);
+        $this->productService->productDelete($product);
     }
 }

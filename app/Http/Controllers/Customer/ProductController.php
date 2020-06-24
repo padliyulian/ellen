@@ -2,36 +2,34 @@
 
 namespace App\Http\Controllers\Customer;
 
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Models\Product;
-use App\Http\Requests\Customer;
-use App\Repositories\Interfaces\ClientInterface;
+use App\Http\Requests\Customer as CustomerRequest;
+use App\Services\ProductService;
 
 class ProductController extends Controller
 {
-    private $model;
+    private $productService;
 
-    public function __construct(ClientInterface $model)
+    public function __construct(ProductService $productService)
     {
-        $this->model = $model;
+        $this->productService = $productService;
     }
 
     public function index()
     {
-        $products = $this->model->productList(10);
+        $products = $this->productService->productList(10);
         return view('public.index', compact('products'));
     }
 
     public function show($product)
     {
-        $product = $this->model->productDetail($product);
+        $product = $this->productService->productDetail($product);
         return view('public.cart', compact('product'));
     }
 
-    public function order(Customer $request)
+    public function order(CustomerRequest $request)
     {
-        $order = $this->model->productOrder($request);
-        return view('public.order', compact('order'))->with('status', 'Success!');
+        $order = $this->productService->productOrder($request);
+        return view('public.order', compact('order'))->withStatus('Success!');
     }
 }

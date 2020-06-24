@@ -3,17 +3,16 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 use App\Http\Requests\Order as OrderRequest;
-use App\Repositories\Interfaces\AdminInterface;
+use App\Services\OrderService;
 
 class OrderController extends Controller
 {
-    private $model;
+    private $orderService;
 
-    public function __construct(AdminInterface $model)
+    public function __construct(OrderService $orderService)
     {
-        $this->model = $model;
+        $this->orderService = $orderService;
     }
 
     public function index()
@@ -23,18 +22,18 @@ class OrderController extends Controller
 
     public function show($order)
     {
-        $order = $this->model->orderShow($order);
+        $order = $this->orderService->orderShow($order);
         return view('admin.order.edit', compact('order'));
     }
 
     public function update(OrderRequest $request, $order)
     {
-        $this->model->orderUpdate($request, $order);
+        $this->orderService->orderUpdate($request, $order);
         return view('admin.order.index')->withStatus('Update Success');
     }
 
     public function destroy($order)
     {
-        $this->model->orderDelete($order);
+        return $this->orderService->orderDelete($order);
     }
 }

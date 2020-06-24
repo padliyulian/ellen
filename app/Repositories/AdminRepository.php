@@ -2,7 +2,6 @@
 
 namespace App\Repositories;
 
-use App\Models\Customer;
 use App\Models\Order;
 use App\Models\Product;
 use App\Models\User;
@@ -39,12 +38,6 @@ class AdminRepository implements AdminInterface
         if ($product->save()) {
             return $product;
         }
-    }
-
-    public function productShow($id)
-    {
-        $product = Product::findOrFail($id);
-        return $product;
     }
 
     public function productUpdate($request, $id)

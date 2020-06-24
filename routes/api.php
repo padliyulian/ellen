@@ -13,7 +13,7 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::group(['middleware' => 'auth:api', 'namespace' => 'Admin\Api', 'prefix' => 'v1'], function(){
+Route::group(['middleware' => 'auth:api', 'namespace' => 'Admin\Api\v1', 'prefix' => 'v1'], function(){
     Route::get('product', 'ProductController@index')->name('api.product.index');
     Route::get('order', 'OrderController@index')->name('api.order.index');
     Route::get('user', 'UserController@index')->name('api.user.index');

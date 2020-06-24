@@ -7,7 +7,6 @@ interface AdminInterface
     // product
     public function productList();
     public function productStore($request);
-    public function productShow($id);
     public function productUpdate($request, $id);
     public function productDelete($id);
 

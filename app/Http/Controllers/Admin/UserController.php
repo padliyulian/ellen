@@ -3,17 +3,16 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 use App\Http\Requests\User as UserRequest;
-use App\Repositories\Interfaces\AdminInterface;
+use App\Services\UserService;
 
 class UserController extends Controller
 {
-    private $model;
+    private $userService;
 
-    public function __construct(AdminInterface $model)
+    public function __construct(UserService $userService)
     {
-        $this->model = $model;
+        $this->userService = $userService;
     }
 
     public function index()
@@ -23,18 +22,18 @@ class UserController extends Controller
 
     public function show($user)
     {
-        $user = $this->model->userShow($user);
+        $user = $this->userService->userShow($user);
         return view('admin.user.edit', compact('user'));
     }
 
     public function update(UserRequest $request, $user)
     {
-        $this->model->userUpdate($request, $user);
+        $this->userService->userUpdate($request, $user);
         return view('admin.user.index')->withStatus('Update Success');
     }
 
     public function destroy($user)
     {
-        $this->model->userDelete($user);
+        return $this->userService->userDelete($user);
     }
 }
