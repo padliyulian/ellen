@@ -73,8 +73,8 @@
             ],
         });
 
-         // delete product
-         $('body').on('click', '.js-product__delete', function (event) {
+        // delete product
+        $('body').on('click', '.js-product__delete', function (event) {
             event.preventDefault();
 
             let me = $(this),

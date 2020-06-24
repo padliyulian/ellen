@@ -65,8 +65,8 @@
             ],
         });
 
-         // delete order
-         $('body').on('click', '.js-order__delete', function (event) {
+        // delete order
+        $('body').on('click', '.js-order__delete', function (event) {
             event.preventDefault();
 
             let me = $(this),

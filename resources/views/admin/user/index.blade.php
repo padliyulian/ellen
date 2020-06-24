@@ -57,8 +57,8 @@
             ],
         });
 
-         // delete user
-         $('body').on('click', '.js-user__delete', function (event) {
+        // delete user
+        $('body').on('click', '.js-user__delete', function (event) {
             event.preventDefault();
 
             let me = $(this),
